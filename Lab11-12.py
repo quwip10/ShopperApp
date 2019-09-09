@@ -20,12 +20,13 @@ class ItemToPurchase():
             item_name="none",
             item_price=0,
             item_quantity=0,
-            item_description=None):
+            item_description="none"):
         '''initializes a class with default values of zero'''
 
         self.item_name = item_name
         self.item_price = item_price
         self.item_quantity = item_quantity
+        self.item_description = item_description
 
     def print_item_cost(self):
         '''prints total cost of x quantity of items'''
@@ -106,12 +107,11 @@ class ShoppingCart():
             self.cart_items.remove(item_name)
         else:
             print("Item not found in cart. Nothing modified.")
-        pass
 
     def get_num_items_in_cart(self):
         '''Returns quantity of all items in cart'''
 
-       return len(self.cart_items) 
+        return (len(self.cart_items))
 
     def get_cost_of_cart(self):
         '''Determines and returns total cost of items in cart'''
@@ -142,6 +142,24 @@ def get_object(item_number=1):
             ))
 
 
+def print_menu(cart):
+    '''prints a menu and edits shopping cart item'''
+
+    user_input = None
+
+    while user_input != 'q':
+        print('''
+MENU
+a - Add item to cart
+r - Remove item from cart
+c - Change item quantity
+i - Output items' descriptions
+o - Output shopping cart
+q - Quit
+''')
+        user_input = input("Choose an option:\n")
+
+
 # Main
 if __name__ == "__main__":
     '''Prompts user for item name, price, and quantity
@@ -156,10 +174,14 @@ if __name__ == "__main__":
             print("Usage: python3 Lab11-11 item_quantity")
             sys.exit(1)
         else:
-            num_objects = int(sys.argv[1])
+            num_objects = int(sys.argv[2])
 
     '''object_list = [get_object(item_count)
         for item_count in range(num_objects)]'''
 
-    # School required code
+# School required code
+if __name__ == "__main__":
 
+    user_cart = ShoppingCart()
+
+    print_menu(user_cart)

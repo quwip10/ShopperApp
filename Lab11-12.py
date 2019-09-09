@@ -11,6 +11,15 @@ object_list = []
 
 
 # Classes
+class Shopper():
+    '''shopper object with attributes'''
+
+    def __init__(name="none", date="none"):
+        '''initialize Shopper'''
+
+        self.name = name
+        self.date = date
+
 class ItemToPurchase():
     '''Shopping cart item takes
         item_name, item_price, item_quantity, and item_description'''
@@ -147,8 +156,7 @@ def print_menu(cart):
 
     user_input = None
 
-    while user_input != 'q':
-        print('''
+    print('''
 MENU
 a - Add item to cart
 r - Remove item from cart
@@ -157,6 +165,8 @@ i - Output items' descriptions
 o - Output shopping cart
 q - Quit
 ''')
+
+    while user_input != 'q':
         user_input = input("Choose an option:\n")
 
 
@@ -182,6 +192,16 @@ if __name__ == "__main__":
 # School required code
 if __name__ == "__main__":
 
-    user_cart = ShoppingCart()
+    name = input("Enter customer's name:\n")
+    date = input("Enter today's date:\n")
+
+    # Create new Shopping cart object from input
+    user_cart = ShoppingCart(
+            customer_name=name,
+            current_date=date)
+    
+    # Print input back to screen
+    print("\nCustomer name: {}".format(name))
+    print("Today's date: {}".format(date))
 
     print_menu(user_cart)

@@ -125,11 +125,16 @@ class ShoppingCart():
             for description, price and quantity. If not, modify item in cart.
             If item cannot be found by name in cart, output error'''
 
-        if item in self.cart_items:
-            #FIXME fill this out
-            pass
-        else:
-            print("Item not found in cart. Nothing modified.")
+        for i in self.cart_items:
+            if i.item_name == item.item_name:
+                if (item.item_price != i.item_price) and (item.item_price != 0):
+                    i.item_price = item.item_price
+                if (item.item_quantity != i.item_quantity) and (item.item_quantity != 0):
+                    i.item_quantity = item.item_quantity
+                if (item.item_description != i.item_description) and (item.item_description != "none"):
+                    i.item_description = item.item_description
+                return
+        print("Item not found in cart. Nothing modified.")
 
     def get_num_items_in_cart(self):
         '''Returns quantity of all items in cart'''

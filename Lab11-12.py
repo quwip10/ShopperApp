@@ -56,7 +56,7 @@ class ItemToPurchase():
     def _calc_total_cost(self):
         '''calculates the total cost of x items'''
 
-        return (float(self.item_price) * float(self.item_quantity))
+        return (self.item_price * self.item_quantity)
 
     def __str__(self):
         '''overloads string statement to print the attributes'''
@@ -75,7 +75,6 @@ class ItemToPurchase():
             return (self._calc_total_cost() + other)
         else:
             print("Unsupported type: {} {}".format(other, type(other)))
-
 
 class ShoppingCart():
     '''Customer shopping cart class'''
@@ -156,10 +155,10 @@ class ShoppingCart():
         print()
         print("Total: ${}".format(self.get_cost_of_cart()))
 
-    def print_descriptions():
+    def print_descriptions(self):
         '''Output each item's descriptions'''
 
-        pass
+        [print(i.print_item_description()) for i in self.cart_items]
 
 
 # Functions
@@ -210,7 +209,12 @@ q - Quit
             cart.modify_item(temp_item)
 
         elif user_input == 'i':
-            pass
+            print("OUTPUT ITEMS' DESCRIPTIONS")
+            print("{}'s Shopping Cart - {}".format(cart.customer_name, cart.current_date))
+            print()
+            print("Item Descriptions")
+            cart.print_descriptions()
+            
         elif user_input == 'o':
             print("OUTPUT SHOPPING CART")
             cart.print_total()

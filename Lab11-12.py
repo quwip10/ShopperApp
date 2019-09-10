@@ -172,25 +172,8 @@ q - Quit
 
 # Main
 if __name__ == "__main__":
-    '''Prompts user for item name, price, and quantity
-        and creates class objects in a list'''
 
-    num_objects = 2
-
-    # check if command line argument to input quantity of items
-    if len(sys.argv) > 1:
-        # check if isdigit and only one arg
-        if len(sys.argv) > 2 or not sys.argv[1].isdigit():
-            print("Usage: python3 Lab11-11 item_quantity")
-            sys.exit(1)
-        else:
-            num_objects = int(sys.argv[2])
-
-    '''object_list = [get_object(item_count)
-        for item_count in range(num_objects)]'''
-
-# School required code
-if __name__ == "__main__":
+    # School required code
 
     name = input("Enter customer's name:\n")
     date = input("Enter today's date:\n")

@@ -212,7 +212,8 @@ q - Quit
         elif user_input == 'i':
             pass
         elif user_input == 'o':
-            pass
+            print("OUTPUT SHOPPING CART")
+            cart.print_total()
 
 
 # Main

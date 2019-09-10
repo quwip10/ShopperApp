@@ -138,7 +138,12 @@ class ShoppingCart():
     def get_num_items_in_cart(self):
         '''Returns quantity of all items in cart'''
 
-        return (len(self.cart_items))
+        num_items = 0
+
+        for i in self.cart_items:
+            num_items += i.item_quantity
+
+        return num_items
 
     def get_cost_of_cart(self):
         '''Determines and returns total cost of items in cart'''
@@ -151,7 +156,10 @@ class ShoppingCart():
         print("{}'s Shopping Cart - {}".format(self.customer_name, self.current_date))
         print("Number of Items: {}".format(self.get_num_items_in_cart()))
         print()
-        [print(i.print_item_cost() for i in self.cart_items)]
+        if self.get_num_items_in_cart() == 0:
+            print("SHOPPING CART IS EMPTY")
+        else:
+            [print(i.print_item_cost()) for i in self.cart_items]
         print()
         print("Total: ${}".format(self.get_cost_of_cart()))
 
@@ -159,6 +167,7 @@ class ShoppingCart():
         '''Output each item's descriptions'''
 
         [print(i.print_item_description()) for i in self.cart_items]
+        print()
 
 
 # Functions
@@ -180,7 +189,8 @@ def print_menu(cart):
 
     user_input = None
 
-    print('''
+    while user_input != 'q':
+        print('''
 MENU
 a - Add item to cart
 r - Remove item from cart
@@ -190,7 +200,6 @@ o - Output shopping cart
 q - Quit
 ''')
 
-    while user_input != 'q':
         user_input = input("Choose an option:\n")
 
         if user_input == 'a':
@@ -214,7 +223,7 @@ q - Quit
             print()
             print("Item Descriptions")
             cart.print_descriptions()
-            
+
         elif user_input == 'o':
             print("OUTPUT SHOPPING CART")
             cart.print_total()

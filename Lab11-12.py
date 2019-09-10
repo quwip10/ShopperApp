@@ -147,9 +147,14 @@ class ShoppingCart():
         return sum([i._calc_total_cost() for i in self.cart_items])
 
     def print_total(self):
-        '''Return? Output? total of objects in cart or empty'''
+        '''Output total of objects in cart or empty'''
 
-        pass
+        print("{}'s Shopping Cart - {}".format(self.customer_name, self.current_date))
+        print("Number of Items: {}".format(self.get_num_items_in_cart()))
+        print()
+        [print(i.print_item_cost() for i in self.cart_items)]
+        print()
+        print("Total: ${}".format(self.get_cost_of_cart()))
 
     def print_descriptions():
         '''Output each item's descriptions'''

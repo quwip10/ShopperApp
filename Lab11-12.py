@@ -27,7 +27,7 @@ class ItemToPurchase():
     def __init__(
             self,
             item_name="none",
-            item_price=0,
+            item_price=0.0,
             item_quantity=0,
             item_description="none"):
         '''initializes a class with default values of zero'''
@@ -56,7 +56,7 @@ class ItemToPurchase():
     def _calc_total_cost(self):
         '''calculates the total cost of x items'''
 
-        return (self.item_price * self.item_quantity)
+        return (float(self.item_price) * float(self.item_quantity))
 
     def __str__(self):
         '''overloads string statement to print the attributes'''
@@ -163,16 +163,16 @@ class ShoppingCart():
 
 
 # Functions
-def get_object(item_number=1):
+def get_item_object(item_number=1):
     '''Prompts user for item name, price, and quantity
         and creates class objects in a list'''
 
 #    print("Item {}".format(item_number + 1))
     return (ItemToPurchase(
-            str(input("Enter the item name:\n")),
-            str(input("Enter the item description:\n")),
-            float(input("Enter the item price:\n")),
-            int(input("Enter the item quantity:\n"))
+            item_name=str(input("Enter the item name:\n")),
+            item_description=str(input("Enter the item description:\n")),
+            item_price=float(input("Enter the item price:\n")),
+            item_quantity=int(input("Enter the item quantity:\n"))
             ))
 
 
@@ -196,7 +196,7 @@ q - Quit
 
         if user_input == 'a':
             print("ADD ITEM TO CART")
-            cart.add_item(get_object())
+            cart.add_item(get_item_object())
 
         elif user_input == 'r':
             print("REMOVE ITEM FROM CART")

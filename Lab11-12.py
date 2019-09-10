@@ -139,7 +139,7 @@ class ShoppingCart():
     def get_cost_of_cart(self):
         '''Determines and returns total cost of items in cart'''
 
-        pass
+        return sum([i._calc_total_cost() for i in self.cart_items])
 
     def print_total(self):
         '''Return? Output? total of objects in cart or empty'''
@@ -187,17 +187,18 @@ q - Quit
         if user_input == 'a':
             print("ADD ITEM TO CART")
             cart.add_item(get_object())
-            # FIXME debug below
-            print(cart.cart_items)
+
         elif user_input == 'r':
             print("REMOVE ITEM FROM CART")
             cart.remove_item(input("Enter name of item to remove:\n"))
+
         elif user_input == 'c':
             print("CHANGE ITEM QUANTITY")
             temp_item = ItemToPurchase(
                     item_name=input("Enter the item name:\n"),
                     item_quantity=int(input("Enter the new quantity:\n")) )
             cart.modify_item(temp_item)
+
         elif user_input == 'i':
             pass
         elif user_input == 'o':

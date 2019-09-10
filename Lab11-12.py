@@ -82,27 +82,40 @@ class ShoppingCart():
 
     def __init__(
             self,
-            customer_name=None,
+            customer_name="none",
             current_date="January 1, 2016",
             cart_items=[]):
 
         self.customer_name = customer_name
         self.current_date = current_date
         self.cart_items = cart_items
+    
+    def __iter__(self):
+        # FIXME is this necessary?
+        return self.cart_items
+    
+    def __contains__(self, item):
+        # FIXME debug statment below
+        print("debugged")
+        for i in self.cart_items:
+            if i == item.item_name:
+                return True
+        return False
 
-    def add_item(self, item_to_add):
+    def add_item(self, item):
         '''Adds an item to cart_items list. Does not return anything'''
 
         self.cart_items.append(item)
 
-    def remove_item(self, item_name):
-        '''Removes item form cart_items list by name.
+    def remove_item(self, item_str):
+        '''Removes item from cart_items list by name.
             Does not return anything'''
+        
+        for i in self.cart_items:
+            if i.item_name == item_str:
+                return self.cart_items.remove(i)
 
-        if item in self.cart_items:
-            self.cart_items.remove(item)
-        else:
-            print("Item not found in cart. Nothing removed.")
+        print("Item not found in cart. Nothing removed.")
 
     def modify_item(self, item):
         '''Modifies an item's description, price, and/or quantity.
@@ -112,8 +125,9 @@ class ShoppingCart():
             for description, price and quantity. If not, modify item in cart.
             If item cannot be found by name in cart, output error'''
 
-        if item_name in self.cart_items:
-            self.cart_items.remove(item_name)
+        if item in self.cart_items:
+            #FIXME fill this out
+            pass
         else:
             print("Item not found in cart. Nothing modified.")
 
@@ -143,9 +157,10 @@ def get_object(item_number=1):
     '''Prompts user for item name, price, and quantity
         and creates class objects in a list'''
 
-    print("Item {}".format(item_number + 1))
+#    print("Item {}".format(item_number + 1))
     return (ItemToPurchase(
             str(input("Enter the item name:\n")),
+            str(input("Enter the item description:\n")),
             float(input("Enter the item price:\n")),
             int(input("Enter the item quantity:\n"))
             ))
@@ -168,6 +183,25 @@ q - Quit
 
     while user_input != 'q':
         user_input = input("Choose an option:\n")
+
+        if user_input == 'a':
+            print("ADD ITEM TO CART")
+            cart.add_item(get_object())
+            # FIXME debug below
+            print(cart.cart_items)
+        elif user_input == 'r':
+            print("REMOVE ITEM FROM CART")
+            cart.remove_item(input("Enter name of item to remove:\n"))
+        elif user_input == 'c':
+            print("CHANGE ITEM QUANTITY")
+            temp_item = ItemToPurchase(
+                    item_name=input("Enter the item name:\n"),
+                    item_quantity=int(input("Enter the new quantity:\n")) )
+            cart.modify_item(temp_item)
+        elif user_input == 'i':
+            pass
+        elif user_input == 'o':
+            pass
 
 
 # Main

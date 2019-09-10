@@ -8,7 +8,7 @@ import sys
 
 # Global Variables
 object_list = []
-
+valid_choices = ('a', 'r', 'c', 'i', 'o', 'q')
 
 # Classes
 class Shopper():
@@ -49,7 +49,7 @@ class ItemToPurchase():
     def print_item_description(self):
         '''prints description of item'''
 
-        return ("{}: {} ".format(
+        return ("{}: {}".format(
                 self.item_name,
                 self.item_description))
 
@@ -161,13 +161,12 @@ class ShoppingCart():
         else:
             [print(i.print_item_cost()) for i in self.cart_items]
         print()
-        print("Total: ${}".format(self.get_cost_of_cart()))
+        print("Total: ${:.0f}".format(self.get_cost_of_cart()))
 
     def print_descriptions(self):
         '''Output each item's descriptions'''
 
         [print(i.print_item_description()) for i in self.cart_items]
-        print()
 
 
 # Functions
@@ -189,8 +188,7 @@ def print_menu(cart):
 
     user_input = None
 
-    while user_input != 'q':
-        print('''
+    print('''
 MENU
 a - Add item to cart
 r - Remove item from cart
@@ -200,6 +198,7 @@ o - Output shopping cart
 q - Quit
 ''')
 
+    while user_input not in valid_choices:
         user_input = input("Choose an option:\n")
 
         if user_input == 'a':
@@ -228,6 +227,7 @@ q - Quit
             print("OUTPUT SHOPPING CART")
             cart.print_total()
 
+    return user_input
 
 # Main
 if __name__ == "__main__":
@@ -246,4 +246,6 @@ if __name__ == "__main__":
     print("\nCustomer name: {}".format(name))
     print("Today's date: {}".format(date))
 
-    print_menu(user_cart)
+    user_selection = "none"
+    while user_selection != 'q':
+        user_selection = print_menu(user_cart)

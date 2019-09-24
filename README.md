@@ -13,4 +13,4 @@ Right now the project can be run in interactive mode simply by
 running python3 main.py after cloning/downloading.
 
 Future modifications will allow all interaction via CLI arguments
-and perhaps a database?
+and perhaps a database to allow persistence between sessions.

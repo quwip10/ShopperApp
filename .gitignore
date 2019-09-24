@@ -40,7 +40,7 @@ Thumbs.db
 # VsCode Settings File #
 ########################
 settings.json
-*.vscode
+!.__pycache__/*
 
 ### VisualStudioCode ###
 .vscode/*

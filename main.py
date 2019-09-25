@@ -58,12 +58,13 @@ q - Quit
             print("CHANGE ITEM QUANTITY")
             temp_item = ItemToPurchase(
                     item_name=input("Enter the item name:\n"),
-                    item_quantity=int(input("Enter the new quantity:\n")) )
+                    item_quantity=int(input("Enter the new quantity:\n")))
             cart.modify_item(temp_item)
 
         elif user_input == 'i':
             print("OUTPUT ITEMS' DESCRIPTIONS")
-            print("{}'s Shopping Cart - {}".format(cart.customer_name, cart.current_date))
+            print("{}'s Shopping Cart - {}".format(
+                    cart.customer_name, cart.current_date))
             print()
             print("Item Descriptions")
             cart.print_descriptions()
@@ -87,7 +88,7 @@ if __name__ == "__main__":
     user_cart = ShoppingCart(
             customer_name=name,
             current_date=date)
-    
+
     # Print input back to screen
     print("\nCustomer name: {}".format(name))
     print("Today's date: {}".format(date))
@@ -95,3 +96,4 @@ if __name__ == "__main__":
     user_selection = "none"
     while user_selection != 'q':
         user_selection = print_menu(user_cart)
+

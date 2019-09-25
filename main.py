@@ -1,25 +1,17 @@
-# Main
-# Created 9-24-19
-# Last updated 9-24-19
-# Aheidenreich
-
-
-# Imports
 import sys
 from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 
-# Global Variables
 object_list = []
 valid_choices = ('a', 'r', 'c', 'i', 'o', 'q')
 
 
-# Functions
 def get_item_object(item_number=1):
     '''Prompts user for item name, price, and quantity
         and creates class objects in a list'''
 
-#    print("Item {}".format(item_number + 1))
+    # FIXME remove below line?
+    # print("Item {}".format(item_number + 1))
     return (ItemToPurchase(
             item_name=str(input("Enter the item name:\n")),
             item_description=str(input("Enter the item description:\n")),
@@ -77,6 +69,10 @@ q - Quit
 
 
 # Main
+# Created 9-24-19
+# Last updated 9-24-19
+# Aheidenreich
+
 if __name__ == "__main__":
 
     # School required code

@@ -37,7 +37,8 @@ main.py:97:47: W292 no newline at end of file
            options.
     * Investigate the possibility of creating your own ShopperMenu class  
 
-~~7. Provide input guidance.~~ 
+~~7. Provide input guidance.~~
+
     * "Enter customer name (First Last)"  
     * "Enter today's date (YYYYMMDD)"  
     * default to today's date (computers know this kind of thing"  

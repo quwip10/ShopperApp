@@ -1,6 +1,7 @@
 import sys
 from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
+from datetime import date as dt
 
 def get_item_object(item_number=1):
     '''Prompts user for item name, price, and quantity
@@ -75,7 +76,10 @@ if __name__ == "__main__":
     # School required code
 
     name = input("Enter customer's name (First Last): ")
-    date = input("Enter today's date (DD-MM-YYYY): ")
+    print("Enter today's date (YYYY-MM-DD)")
+    date = input("Default is {}: ".format(dt.today()))
+    if not date.strip():
+        date = dt.today()
 
     # Create new Shopping cart object from input
     user_cart = ShoppingCart(

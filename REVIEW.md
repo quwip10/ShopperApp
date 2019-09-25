@@ -2,7 +2,7 @@
 
 Coding Style 
 ===
-1. Fix Python code style using pycodestyle main.py
+~~1. Fix Python code style using pycodestyle main.py~~
 <pre>
 main.py:61:74: E202 whitespace before ')'  
 main.py:66:80: E501 line too long (90 > 79 characters)  
@@ -10,7 +10,7 @@ main.py:90:1: W293 blank line contains whitespace
 main.py:97:47: W292 no newline at end of file  
 </pre>
 
-2. Place these comments closer to the if name == main block
+~~2. Place these comments closer to the if name == main block~~
 <pre>
 # Main  
 # Created 9-24-19  
@@ -18,13 +18,13 @@ main.py:97:47: W292 no newline at end of file
 # Aheidenreich  
 </pre>
 
-3. No need for comments that do not add any real information.
+~~3. No need for comments that do not add any real information.~~
     *) Imports
     *) Global Variables
     *) Functions
 
-4. Avoid global variables at all cost. There probably isn't any
-   legitimate reason to use them :)
+~~4. Avoid global variables at all cost. There probably isn't any
+   legitimate reason to use them :)~~
 
 5. Use Python logging versus commenting/uncommenting print statements
 
@@ -37,7 +37,7 @@ main.py:97:47: W292 no newline at end of file
            options.
     *) Investigate the possibility of creating your own ShopperMenu class  
 
-7. Provide input guidance.  
+~~7. Provide input guidance.~~ 
     *) "Enter customer name (First Last)"  
     *) "Enter today's date (YYYYMMDD)"  
     *) default to today's date (computers know this kind of thing"  

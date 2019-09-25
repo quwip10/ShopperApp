@@ -5,16 +5,23 @@ Coding Style
 1. Fix Python code style using pycodestyle main.py
 <code>
 main.py:61:74: E202 whitespace before ')'  
+
 main.py:66:80: E501 line too long (90 > 79 characters)  
+
 main.py:90:1: W293 blank line contains whitespace  
+
 main.py:97:47: W292 no newline at end of file  
+
 </code>
 
 2. Place these comments closer to the if name == main block
 <code>
 # Main
+
 # Created 9-24-19
+
 # Last updated 9-24-19
+
 # Aheidenreich
 </code>
 

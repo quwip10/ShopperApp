@@ -3,6 +3,7 @@ from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 from datetime import date as dt
 
+
 def get_item_object(item_number=1):
     '''Prompts user for item name, price, and quantity
         and creates class objects in a list'''
@@ -93,4 +94,3 @@ if __name__ == "__main__":
     user_selection = "none"
     while user_selection != 'q':
         user_selection = print_menu(user_cart)
-

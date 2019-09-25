@@ -2,10 +2,6 @@ import sys
 from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 
-object_list = []
-valid_choices = ('a', 'r', 'c', 'i', 'o', 'q')
-
-
 def get_item_object(item_number=1):
     '''Prompts user for item name, price, and quantity
         and creates class objects in a list'''
@@ -24,6 +20,7 @@ def print_menu(cart):
     '''prints a menu and edits shopping cart item'''
 
     user_input = None
+    valid_choices = ('a', 'r', 'c', 'i', 'o', 'q')
 
     print('''
 MENU

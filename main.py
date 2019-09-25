@@ -74,8 +74,8 @@ if __name__ == "__main__":
 
     # School required code
 
-    name = input("Enter customer's name:\n")
-    date = input("Enter today's date:\n")
+    name = input("Enter customer's name (First Last): ")
+    date = input("Enter today's date (DD-MM-YYYY): ")
 
     # Create new Shopping cart object from input
     user_cart = ShoppingCart(

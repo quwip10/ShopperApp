@@ -19,8 +19,6 @@ class ShoppingCart():
         return self.cart_items
 
     def __contains__(self, item):
-        # FIXME debug statment below
-        print("debugged")
         for i in self.cart_items:
             if i == item.item_name:
                 return True
@@ -94,5 +92,5 @@ class ShoppingCart():
 
     def print_descriptions(self):
         '''Output each item's descriptions'''
-#        [print(i.print_item_description()) for i in self.cart_items
+        [print(i.print_item_description()) for i in self.cart_items]
 

@@ -10,8 +10,6 @@ def get_item_object(item_number=1):
     '''Prompts user for item name, price, and quantity
         and creates class objects in a list'''
 
-    # FIXME remove below line?
-    # print("Item {}".format(item_number + 1))
     return (ItemToPurchase(
             item_name=str(input("Enter the item name:\n")),
             item_description=str(input("Enter the item description:\n")),

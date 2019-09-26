@@ -1,4 +1,6 @@
 import sys
+import logging
+logging.basicConfig(level=logging.DEBUG)
 from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 from datetime import date as dt
@@ -80,6 +82,7 @@ if __name__ == "__main__":
     print("Enter today's date (YYYY-MM-DD)")
     date = input("Default is {}: ".format(dt.today()))
     if not date.strip():
+        logging.info("No date entered. Using today's date.")
         date = dt.today()
 
     # Create new Shopping cart object from input

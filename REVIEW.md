@@ -29,7 +29,7 @@ main.py:97:47: W292 no newline at end of file
 5. ~~Use Python logging versus commenting/uncommenting print statements~~
 
 6. The print_menu function should be two or 3 separate functions.
-    * Menu option function. This would remove the need for global variables  
+    * ~~Menu option function. This would remove the need for global variables~~  
     * Menu display function. Sole purpose is to display menu.  
     * Menu input function sole purpose to accept and validate choice  
         * There might be sub-menu function to handle each menu option  

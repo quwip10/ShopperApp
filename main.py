@@ -17,12 +17,16 @@ def get_item_object(item_number=1):
             item_quantity=int(input("Enter the item quantity:\n"))
             ))
 
+def menu_option(user_input):
+    '''checks if valid answer'''
+    valid_input = ('a', 'r', 'c', 'i', 'o', 'q')
+
+    if user_input in valid_input: return True
 
 def print_menu(cart):
     '''prints a menu and edits shopping cart item'''
 
     user_input = None
-    valid_choices = ('a', 'r', 'c', 'i', 'o', 'q')
 
     print('''
 MENU
@@ -34,7 +38,7 @@ o - Output shopping cart
 q - Quit
 ''')
 
-    while user_input not in valid_choices:
+    while not menu_option(user_input):
         user_input = input("Choose an option:\n")
 
         if user_input == 'a':

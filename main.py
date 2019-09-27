@@ -104,11 +104,6 @@ if __name__ == "__main__":
     # Print input back to screen
     print("\nCustomer name: {}".format(name))
     print("Today's date: {}".format(date))
-    '''
-    user_selection = "none"
-    while user_selection != 'q':
-        user_selection = print_menu(user_cart)
-    '''
 
     while execute_option(print_menu(), user_cart) != 'q':
         continue

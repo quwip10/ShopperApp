@@ -1,9 +1,9 @@
-import sys
-import logging
-logging.basicConfig(level=logging.DEBUG)
 from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 from datetime import date as dt
+import sys
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 
 def get_item_object(item_number=1):
@@ -17,14 +17,17 @@ def get_item_object(item_number=1):
             item_quantity=int(input("Enter the item quantity:\n"))
             ))
 
+
 def menu_option(user_input):
     '''checks if valid answer'''
     valid_input = ('a', 'r', 'c', 'i', 'o', 'q')
 
-    if user_input in valid_input: return True
+    if user_input in valid_input:
+        return True
 
-def print_menu(cart):
-    '''prints a menu and edits shopping cart item'''
+
+def print_menu():
+    '''prints a menu and returns user input'''
 
     user_input = None
 
@@ -39,34 +42,39 @@ q - Quit
 ''')
 
     while not menu_option(user_input):
-        user_input = input("Choose an option:\n")
+        user_input = input("Choose an option: ")
 
-        if user_input == 'a':
-            print("ADD ITEM TO CART")
-            cart.add_item(get_item_object())
+    return user_input
 
-        elif user_input == 'r':
-            print("REMOVE ITEM FROM CART")
-            cart.remove_item(input("Enter name of item to remove:\n"))
 
-        elif user_input == 'c':
-            print("CHANGE ITEM QUANTITY")
-            temp_item = ItemToPurchase(
-                    item_name=input("Enter the item name:\n"),
-                    item_quantity=int(input("Enter the new quantity:\n")))
-            cart.modify_item(temp_item)
+def execute_option(user_input, cart):
 
-        elif user_input == 'i':
-            print("OUTPUT ITEMS' DESCRIPTIONS")
-            print("{}'s Shopping Cart - {}".format(
-                    cart.customer_name, cart.current_date))
-            print()
-            print("Item Descriptions")
-            cart.print_descriptions()
+    if user_input == 'a':
+        print("ADD ITEM TO CART")
+        cart.add_item(get_item_object())
 
-        elif user_input == 'o':
-            print("OUTPUT SHOPPING CART")
-            cart.print_total()
+    elif user_input == 'r':
+        print("REMOVE ITEM FROM CART")
+        cart.remove_item(input("Enter name of item to remove:\n"))
+
+    elif user_input == 'c':
+        print("CHANGE ITEM QUANTITY")
+        temp_item = ItemToPurchase(
+                item_name=input("Enter the item name:\n"),
+                item_quantity=int(input("Enter the new quantity:\n")))
+        cart.modify_item(temp_item)
+
+    elif user_input == 'i':
+        print("OUTPUT ITEMS' DESCRIPTIONS")
+        print("{}'s Shopping Cart - {}".format(
+                cart.customer_name, cart.current_date))
+        print()
+        print("Item Descriptions")
+        cart.print_descriptions()
+
+    elif user_input == 'o':
+        print("OUTPUT SHOPPING CART")
+        cart.print_total()
 
     return user_input
 
@@ -83,6 +91,7 @@ if __name__ == "__main__":
     name = input("Enter customer's name (First Last): ")
     print("Enter today's date (YYYY-MM-DD)")
     date = input("Default is {}: ".format(dt.today()))
+
     if not date.strip():
         logging.info("No date entered. Using today's date.")
         date = dt.today()
@@ -95,7 +104,11 @@ if __name__ == "__main__":
     # Print input back to screen
     print("\nCustomer name: {}".format(name))
     print("Today's date: {}".format(date))
-
+    '''
     user_selection = "none"
     while user_selection != 'q':
         user_selection = print_menu(user_cart)
+    '''
+
+    while execute_option(print_menu(), user_cart) != 'q':
+        continue

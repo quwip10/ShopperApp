@@ -99,6 +99,6 @@ class ShoppingCart():
 
         with open(filename, mode='w') as f:
             f.write("{}'s Shopping Cart - {}\n".format(
-            self.customer_name, self.current_date))
+                self.customer_name, self.current_date))
 
             [f.write(i.print_all() + "\n") for i in self.cart_items]

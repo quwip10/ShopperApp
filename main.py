@@ -107,6 +107,6 @@ if __name__ == "__main__":
 
     while execute_option(print_menu(), user_cart) != 'q':
         continue
-    
+
     if input("Do you want to save your cart? ").lower()[0] == 'y':
         user_cart.export_cart(input("Enter a filename: ") or "cart_export.txt")

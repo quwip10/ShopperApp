@@ -109,4 +109,4 @@ if __name__ == "__main__":
         continue
     
     if input("Do you want to save your cart? ").lower()[0] == 'y':
-        user_cart.export_cart(input("Enter a filename: "))
+        user_cart.export_cart(input("Enter a filename: ") or "cart_export.txt")

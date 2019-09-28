@@ -27,6 +27,14 @@ class ItemToPurchase():
                 self.item_price,
                 self._calc_total_cost()))
 
+    def print_all(self):
+        return ("{}: {} x {} @ ${:.0f} = ${:.0f}".format(
+                self.item_name,
+                self.item_description,
+                self.item_quantity,
+                self.item_price,
+                self._calc_total_cost()))
+
     def print_item_description(self):
         '''prints description of item'''
 

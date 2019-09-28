@@ -94,3 +94,9 @@ class ShoppingCart():
         '''Output each item's descriptions'''
         [print(i.print_item_description()) for i in self.cart_items]
 
+    def export_cart(self, filename):
+        '''take input filename and export cart to file'''
+
+        with open(filename, mode='w') as f:
+            f.write("{}'s Shopping Cart - {}".format(
+            self.customer_name, self.current_date))

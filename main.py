@@ -2,6 +2,7 @@ from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 from datetime import date as dt
 import sys
+import argparse
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -79,12 +80,38 @@ def execute_option(user_input, cart):
     return user_input
 
 
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    '--interactive',
+    action='store_true',
+    help='Opens program in interactive mode')
+parser.add_argument(
+    '-i', '--input',
+    default='',
+    type=str,
+    metavar='input file',
+    help='input filename'
+)
+parser.add_argument(
+    '-o', '--output',
+    default="cart_export.txt",
+    type=str,
+    metavar='output file',
+    help='output filename'
+)
+args = parser.parse_args()
+
+logging.info("Input file: {} Output file: {}".format(args.input, args.output))
+logging.info("Interactive mode={}".format(args.interactive))
+
 # Main
 # Created 9-24-19
 # Last updated 9-24-19
 # Aheidenreich
 
-if __name__ == "__main__":
+if __name__ == "__main__" and args.interactive:
 
     # School required code
 

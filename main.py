@@ -142,7 +142,12 @@ if __name__ == "__main__" and args.interactive:
                               or "cart_export.txt")
 
 elif args.input:
-    pass
+   with open(args.input) as f:
+       input_data = f.readlines()
+    
+   name_date = input_data.pop(0).strip()
+   name = name_date[:name_date.find("'s")]
+   date = name_date[name_date.find('- ') + 2:]
 
 else:
     try:

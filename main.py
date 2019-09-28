@@ -137,3 +137,14 @@ if __name__ == "__main__" and args.interactive:
 
     if input("Do you want to save your cart? ").lower()[0] == 'y':
         user_cart.export_cart(input("Enter a filename: ") or "cart_export.txt")
+
+elif args.input:
+    pass
+
+else:
+    try:
+        raise OSError
+    except OSError:
+        print("Must be run in either interactive mode with --interactive\n"
+              "or with -i INPUT FILE\n"
+              "See -h or --help for more information.")

@@ -136,7 +136,10 @@ if __name__ == "__main__" and args.interactive:
         continue
 
     if input("Do you want to save your cart? ").lower()[0] == 'y':
-        user_cart.export_cart(input("Enter a filename: ") or "cart_export.txt")
+        user_cart.export_cart(input("Enter a filename(Default is {}): "
+                                    .format(args.output or "cart_export.txt"))
+                              or args.output
+                              or "cart_export.txt")
 
 elif args.input:
     pass

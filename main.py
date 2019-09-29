@@ -79,6 +79,28 @@ def execute_option(user_input, cart):
 
     return user_input
 
+def import_cart(input_file):
+   with open(input_file) as f:
+       input_data = f.readlines()
+    
+   name_date = input_data.pop(0).strip()
+   name = name_date[:name_date.find("'s")]
+   date = name_date[name_date.find('-') + 1:].strip()
+
+   user_cart = ShoppingCart(
+       customer_name=name,
+       current_date=date,
+       cart_items=[
+           ItemToPurchase(
+               item_name=i[:i.find(':')],
+               item_description=i[i.find(' '):i.find('x')].strip(),
+               item_quantity=int(i[i.find('x')+1:i.find('@')].strip()),
+               item_price=int(i[i.find('$')+1:i.find('=')].strip())
+               ) for i in input_data
+       ])
+
+   [print(i.print_all()) for i in user_cart.cart_items]
+
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
@@ -142,25 +164,7 @@ if __name__ == "__main__" and args.interactive:
                               or "cart_export.txt")
 
 elif args.input:
-   with open(args.input) as f:
-       input_data = f.readlines()
-    
-   name_date = input_data.pop(0).strip()
-   name = name_date[:name_date.find("'s")]
-   date = name_date[name_date.find('-') + 1:].strip()
-
-   # FIXME need to use list expansion to slice and strip items into the cart class
-   user_cart = ShoppingCart(
-       customer_name=name,
-       current_date=date,
-       cart_items=[
-           ItemToPurchase(
-               item_name=i[:i.find(':')],
-               item_description=i[i.find(' '):i.find('x')].strip(),
-               item_quantity=i[i.find('x'):i.find('@')].strip(),
-               item_price=i[i.find('$'):i.find('=')].strip()
-               ) for i in input_data
-       ])
+    import_cart(args.input)
 
 else:
     try:

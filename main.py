@@ -147,7 +147,20 @@ elif args.input:
     
    name_date = input_data.pop(0).strip()
    name = name_date[:name_date.find("'s")]
-   date = name_date[name_date.find('- ') + 2:]
+   date = name_date[name_date.find('-') + 1:].strip()
+
+   # FIXME need to use list expansion to slice and strip items into the cart class
+   user_cart = ShoppingCart(
+       customer_name=name,
+       current_date=date,
+       cart_items=[
+           ItemToPurchase(
+               item_name=i[:i.find(':')],
+               item_description=i[i.find(' '):i.find('x')].strip(),
+               item_quantity=i[i.find('x'):i.find('@')].strip(),
+               item_price=i[i.find('$'):i.find('=')].strip()
+               ) for i in input_data
+       ])
 
 else:
     try:

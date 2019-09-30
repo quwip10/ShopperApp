@@ -79,6 +79,7 @@ def execute_option(user_input, cart):
 
     return user_input
 
+
 def import_cart(input_file):
     with open(input_file) as f:
         input_data = f.readlines()
@@ -99,7 +100,7 @@ def import_cart(input_file):
                 ) for i in input_data
         ])
 
-    [print(i.print_all()) for i in user_cart.cart_items]
+    return user_cart
 
 
 # Parse command line arguments
@@ -164,7 +165,8 @@ if __name__ == "__main__" and args.interactive:
                               or "cart_export.txt")
 
 elif args.input:
-    import_cart(args.input)
+    user_cart = import_cart(args.input)
+    user_cart.export_cart(args.output or "cart_export.txt")
 
 else:
     try:

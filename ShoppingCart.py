@@ -97,7 +97,7 @@ class ShoppingCart():
     def export_cart(self, filename="cart_export.txt"):
         '''take input filename and export cart to file'''
 
-        with open(filename, mode='w') as f:
+        with open(filename, mode='a') as f:
             f.write("{}'s Shopping Cart - {}\n".format(
                 self.customer_name, self.current_date))
 

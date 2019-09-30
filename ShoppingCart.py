@@ -97,8 +97,11 @@ class ShoppingCart():
     def export_cart(self, filename="cart_export.txt"):
         '''take input filename and export cart to file'''
 
+        # FIXME there is an error here that an append will re-print the
+        # username and date which will break future imports
         with open(filename, mode='a') as f:
-            f.write("{}'s Shopping Cart - {}\n".format(
-                self.customer_name, self.current_date))
+            if not f.tell():
+                f.write("{}'s Shopping Cart - {}\n".format(
+                    self.customer_name, self.current_date))
 
             [f.write(i.print_all() + "\n") for i in self.cart_items]

@@ -2,6 +2,7 @@ from ShoppingCart import ShoppingCart
 from ItemToPurchase import ItemToPurchase
 from datetime import date as dt
 import sys
+import argparse
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -79,12 +80,61 @@ def execute_option(user_input, cart):
     return user_input
 
 
+def import_cart(input_file):
+    with open(input_file) as f:
+        input_data = f.readlines()
+
+    name_date = input_data.pop(0).strip()
+    name = name_date[:name_date.find("'s")]
+    date = name_date[name_date.find('-') + 1:].strip()
+
+    user_cart = ShoppingCart(
+        customer_name=name,
+        current_date=date,
+        cart_items=[
+            ItemToPurchase(
+                item_name=i[:i.find(':')],
+                item_description=i[i.find(' '):i.find('x')].strip(),
+                item_quantity=int(i[i.find('x')+1:i.find('@')].strip()),
+                item_price=int(i[i.find('$')+1:i.find('=')].strip())
+                ) for i in input_data
+        ])
+
+    return user_cart
+
+
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    '--interactive',
+    action='store_true',
+    help='Opens program in interactive mode')
+parser.add_argument(
+    '-i', '--input',
+    default='',
+    type=str,
+    metavar='input file',
+    help='input filename'
+)
+parser.add_argument(
+    '-o', '--output',
+    default="cart_export.txt",
+    type=str,
+    metavar='output file',
+    help='output filename'
+)
+args = parser.parse_args()
+
+logging.info("Input file: {} Output file: {}".format(args.input, args.output))
+logging.info("Interactive mode={}".format(args.interactive))
+
 # Main
 # Created 9-24-19
 # Last updated 9-24-19
 # Aheidenreich
 
-if __name__ == "__main__":
+if __name__ == "__main__" and args.interactive:
 
     # School required code
 
@@ -109,4 +159,19 @@ if __name__ == "__main__":
         continue
 
     if input("Do you want to save your cart? ").lower()[0] == 'y':
-        user_cart.export_cart(input("Enter a filename: ") or "cart_export.txt")
+        user_cart.export_cart(input("Enter a filename(Default is {}): "
+                                    .format(args.output or "cart_export.txt"))
+                              or args.output
+                              or "cart_export.txt")
+
+elif args.input:
+    user_cart = import_cart(args.input)
+    user_cart.export_cart(args.output or "cart_export.txt")
+
+else:
+    try:
+        raise OSError
+    except OSError:
+        print("Must be run in either interactive mode with --interactive\n"
+              "or with -i INPUT FILE\n"
+              "See -h or --help for more information.")
